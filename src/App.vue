@@ -1,30 +1,82 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div id="app">
+    <!-- Top Navbar -->
+    <header class="navbar">
+      <div class="brand">ABACUS Task Management Application</div>
+      <nav>
+        <RouterLink to="/" class="link">Home</RouterLink>
+        <RouterLink to="/tasks" class="link">Tasks</RouterLink>
+        <RouterLink to="/about" class="link">About</RouterLink>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+      <RouterView />
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <small>© {{ new Date().getFullYear() }} ABACUS Consulting</small>
+    </footer>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
+<script setup>
+// nothing here yet
+</script>
+
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/* Layout */
+#app {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: #fafafa;
+  color: #111;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+nav {
+  display: flex;
+  gap: 16px;
+}
+.link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+.link.router-link-active {
+  border-bottom: 2px solid #111;
+  padding-bottom: 2px;
+}
+
+/* Main content */
+.main {
+  padding: 20px;
+}
+
+/* Footer */
+.footer {
+  padding: 16px 20px;
+  border-top: 1px solid #eee;
+  background: #fff;
+  text-align: center;
+  color: #666;
 }
 </style>
